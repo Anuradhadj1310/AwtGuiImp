@@ -224,6 +224,7 @@ public class GridArrayLayOut implements ActionListener
 				s2=s2+str;
 				System.out.println("STr==================="+str);
 				System.out.println("S2==================="+s2);
+				
 			}
 			else
                 {
@@ -269,6 +270,7 @@ public class GridArrayLayOut implements ActionListener
             double te = 0;
  
             // store the value in 1st
+            try {
             if (s1.equals("+"))
                 te = (Double.parseDouble(s0) + Double.parseDouble(s2));
             else if (s1.equals("-"))
@@ -287,6 +289,10 @@ public class GridArrayLayOut implements ActionListener
             s0 = Double.toString(te);
  
             s1 = s2 = "";
+            }
+            catch(Exception ob3) {
+            	System.out.println("Multiple points===================="+ob3.getMessage());
+            }
         }
         else {
             // if there was no operand
