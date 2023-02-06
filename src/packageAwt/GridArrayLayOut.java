@@ -264,9 +264,9 @@ public class GridArrayLayOut implements ActionListener
 					System.out.println("res=============="+s0);
 			t.setText(s0);
 		}*/
-        else if (str.charAt(0) == '=' && s2!="") {
+        else if (str.charAt(0) == '=' && s2!="" &&s0!="") {
  
-            double te;
+            double te = 0;
  
             // store the value in 1st
             if (s1.equals("+"))
@@ -277,7 +277,7 @@ public class GridArrayLayOut implements ActionListener
                 te = (Double.parseDouble(s0) / Double.parseDouble(s2));
             else if (s1.equals("%"))
                 te = (Double.parseDouble(s0) % Double.parseDouble(s2));
-            else
+            else if(s1.equals("*"))
                 te = (Double.parseDouble(s0) * Double.parseDouble(s2));
  
             // set the value of text
@@ -297,6 +297,7 @@ public class GridArrayLayOut implements ActionListener
                 double te;
  
                 // store the value in 1st
+                try {
                 if (s1.equals("+"))
                     te = (Double.parseDouble(s0) + Double.parseDouble(s2));
                 else if (s1.equals("-"))
@@ -316,6 +317,10 @@ public class GridArrayLayOut implements ActionListener
  
                 // make the operand blank
                 s2 = "";
+                }
+                catch(Exception ob2) {
+                	System.out.println("============="+ob2.getLocalizedMessage()+"=============");
+                }
             }
  
             // set the value of text
