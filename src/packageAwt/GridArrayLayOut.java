@@ -37,8 +37,7 @@ public class GridArrayLayOut implements ActionListener
 		    t.setEditable(false);
 		    fm.add(t);
 	        
-		    ///////////////////////////////////////////////////  two labels
-		     lab1=new JLabel("Hello");
+		     lab1=new JLabel("");
 		     lab2= new JLabel("");
 		    //**********************
 	        JPanel panel1=new JPanel(new GridLayout(1,2));  
@@ -47,17 +46,16 @@ public class GridArrayLayOut implements ActionListener
 	        panel1.add(lab2);
 	        fm.add(panel1);
 	        
-	        //////////////////////////////////////////////////// 4 buttons *************2
+
 	        btn1=new JButton("Back");
 	        btn1.setName("B");
 	        btn2=new JButton("C");
 	        btn2.setName("C");
 	        btn3=new JButton("+/-");
-	        btn3.setName("S");
+	        btn3.setName("A");
 	        btn4=new JButton("%");
 	        btn4.setName("%");
 	        
-	        //**********************
 	        
 	        JPanel panel2=new JPanel(new GridLayout(1,4));  
 	        panel2.setBounds(30,130,340,50);    
@@ -73,7 +71,6 @@ public class GridArrayLayOut implements ActionListener
 	        fm.add(panel2);
 	        
 	        
-	        ////////////////////////////////////////////////////  *********************3
 	        btn21=new JButton("9");
 	        btn21.setName("9");
 	        btn22=new JButton("8");
@@ -98,7 +95,6 @@ public class GridArrayLayOut implements ActionListener
 	        fm.add(panel3);
 	   
 	        
-////////////////////////////////////////////////////*********************4
 
 	        btn31=new JButton("6");
 	        btn31.setName("6");
@@ -123,7 +119,6 @@ public class GridArrayLayOut implements ActionListener
 	        btn34.addActionListener(this);
 	        fm.add(panel4);
 
-	        ////////////////////////////////////////////////////*********************5
 	        
 	        btn41=new JButton("3");
 	        btn41.setName("3");
@@ -148,7 +143,6 @@ public class GridArrayLayOut implements ActionListener
 	        btn44.addActionListener(this);
 	        fm.add(panel5);
 	        
-	        ////////////////////////////////////////////////////*********************6
 	        
 	        btn51=new JButton("0");
 	        btn51.setName("0");
@@ -173,19 +167,12 @@ public class GridArrayLayOut implements ActionListener
 	        btn54.addActionListener(this);
 	        fm.add(panel6);
 	        
-	        ////////////////////////////////////////////////////
-
-	        
-	        ////////////////////////////////////////////////////   
-	        		
-	        //////////////////////////////////////////
-	        fm.addWindowListener(new WindowAdapter() {
+		        fm.addWindowListener(new WindowAdapter() {
 	            public void windowClosing(WindowEvent we) {
 	                System.exit(0);
 	            }
 	        });
-		    //////////////////////////////////////////
-	        
+		        
 	        
 		    fm.setSize(400, 500);   //setting frame size.
 		    fm.setBackground(Color.LIGHT_GRAY);
@@ -196,25 +183,20 @@ public class GridArrayLayOut implements ActionListener
 		    
 		}
 	
-////////////////////////////////////////////////////////
 	
 		public static void main(String[] args) 
 		{
 			// TODO Auto-generated method stub
 			GridArrayLayOut obj1= new GridArrayLayOut();
 		}
-
-
-	////////////////////////////////////////////////////////
 	
-	////////////////////////////////////////////////////////
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		int cntPts=0;
 		// TODO Auto-generated method stub
 		String str=e.getActionCommand();
-		//System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+str+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
 		
 		if((str.charAt(0)>='0' && str.charAt(0)<='9')||str.charAt(0)=='.')
 		{
@@ -222,16 +204,11 @@ public class GridArrayLayOut implements ActionListener
 			if(!s1.equals(""))
 			{
 				s2=s2+str;
-				System.out.println("STr==================="+str);
-				System.out.println("S2==================="+s2);
-				
 			}
 			else
                 {
 					s0 = s0 + str;
-					System.out.println("STr==================="+str);
-					System.out.println("S0==================="+s0);
-                }
+		        }
 				
 			
             // set the value of text
@@ -256,16 +233,15 @@ public class GridArrayLayOut implements ActionListener
 				t.setText(s0);
 			}
 		}
-		/*else if(str.charAt(0)=='S' )
-		{
-			System.out.println("Change sign===================================");
-	
-			Double res=0.0;
-			
-					System.out.println("res=============="+s0);
-			t.setText(s0);
-		}*/
-        else if (str.charAt(0) == '=' && s2!="" &&s0!="") {
+		else if(str.charAt(0)=='A' && s0!="") /////// work in progress
+		{			
+			//System.out.println("================="+str+"====================777");
+			Double res;
+			res=(-1)*Double.parseDouble(s0);
+					//System.out.println("res=============="+s0);
+			t.setText(res.toString());
+		}
+		else if (str.charAt(0) == '=' && s2!="" &&s0!="") {
  
             double te = 0;
  
@@ -281,8 +257,10 @@ public class GridArrayLayOut implements ActionListener
                 te = (Double.parseDouble(s0) % Double.parseDouble(s2));
             else if(s1.equals("*"))
                 te = (Double.parseDouble(s0) * Double.parseDouble(s2));
- 
             // set the value of text
+            else if(s1.equals("+/-"))
+            	te= (Double.parseDouble(s0)*(-1));
+            
             t.setText(s0 + s1 + s2 + "=" + te);
  
             // convert it to string
@@ -325,7 +303,7 @@ public class GridArrayLayOut implements ActionListener
                 s2 = "";
                 }
                 catch(Exception ob2) {
-                	System.out.println("============="+ob2.getLocalizedMessage()+"=============");
+                	System.out.println("============="+ob2.getMessage()+"=============");
                 }
             }
  
