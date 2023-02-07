@@ -233,14 +233,14 @@ public class GridArrayLayOut implements ActionListener
 				t.setText(s0);
 			}
 		}
-		else if(str.charAt(0)=='A' && s0!="") /////// work in progress
+		/*else if(str.charAt(0)=='A' && s0!="") 
 		{			
-			//System.out.println("================="+str+"====================777");
+			
 			Double res;
 			res=(-1)*Double.parseDouble(s0);
-					//System.out.println("res=============="+s0);
+					
 			t.setText(res.toString());
-		}
+		} */ 
 		else if (str.charAt(0) == '=' && s2!="" &&s0!="") {
  
             double te = 0;
@@ -259,8 +259,10 @@ public class GridArrayLayOut implements ActionListener
                 te = (Double.parseDouble(s0) * Double.parseDouble(s2));
             // set the value of text
             else if(s1.equals("+/-"))
+            {
             	te= (Double.parseDouble(s0)*(-1));
-            
+            	s2="";
+            }
             t.setText(s0 + s1 + s2 + "=" + te);
  
             // convert it to string
